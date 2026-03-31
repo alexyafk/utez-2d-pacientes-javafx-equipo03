@@ -3,9 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="623.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/17.0.12"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="CONTROLLER_NAME">
+<VBox prefHeight="623.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.consultoriopacientes.controllers.AppController">
     <children>
         <Label text="CONSULTORIO DE PACIENTES" />
         <GridPane>
@@ -28,32 +26,37 @@
                 <Label text="TELEFONO" GridPane.rowIndex="3" />
                 <Label text="ALERGIAS" GridPane.rowIndex="4" />
                 <Label text="ESTATUS" GridPane.rowIndex="5" />
-                <TextField GridPane.columnIndex="1" />
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <TextField fx:id="txtCURP" GridPane.columnIndex="1" />
+                <TextField fx:id="txtNombre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="txtEdad" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextField fx:id="txtTelefono" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <TextField fx:id="txtAlergias" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <ComboBox fx:id="cbEstatus" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             </children>
         </GridPane>
         <HBox prefHeight="100.0" prefWidth="200.0">
             <children>
-                <Button mnemonicParsing="false" text="NUEVO" />
+                <Button mnemonicParsing="false" onAction="#onAddPaciente" text="NUEVO" />
                 <Button mnemonicParsing="false" text="EDITAR" />
                 <Button mnemonicParsing="false" text="CAMBIAR ESTATUS" />
                 <Button mnemonicParsing="false" text="ELIMINAR" />
                 <Button mnemonicParsing="false" text="RECARGAR" />
+                <Button mnemonicParsing="false" onAction="#limpiar" text="LIMPIAR" />
             </children></HBox>
-        <TableView prefHeight="200.0" prefWidth="200.0">
+        <TableView fx:id="tblPacientes" prefHeight="200.0" prefWidth="200.0">
             <columns>
-                <TableColumn prefWidth="75.0" text="CURP" />
-                <TableColumn prefWidth="75.0" text="NOMBRE" />
-                <TableColumn prefWidth="75.0" text="EDAD" />
-                <TableColumn prefWidth="75.0" text="TELEFONO" />
-                <TableColumn prefWidth="75.0" text="ALERGIAS" />
-                <TableColumn prefWidth="75.0" text="ESTATUS" />
+                <TableColumn fx:id="colCurp" prefWidth="75.0" text="CURP" />
+                <TableColumn fx:id="colNombre" prefWidth="75.0" text="NOMBRE" />
+                <TableColumn fx:id="colEdad" prefWidth="75.0" text="EDAD" />
+                <TableColumn fx:id="colTelefono" prefWidth="75.0" text="TELEFONO" />
+                <TableColumn fx:id="colAlergias" prefWidth="75.0" text="ALERGIAS" />
+                <TableColumn fx:id="colEstatus" prefWidth="75.0" text="ESTATUS" />
             </columns>
         </TableView>
-        <Label text="label" />
+        <Label fx:id="lblMensaje" />
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Label text="RESUMEN:" />
+         </children></VBox>
     </children>
 </VBox>
