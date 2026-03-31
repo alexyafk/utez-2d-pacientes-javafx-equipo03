@@ -9,10 +9,6 @@ import java.util.List;
 
 public class PacienteService {
     private PacienteRepository repo = new PacienteRepository();
-    private final String[] estatusOpciones = {"ACTIVO", "INACTIVO"};
-    public String[] getEstatusOpciones() {
-        return estatusOpciones;
-    }
 
     public List<Paciente> loadDataForList() throws IOException {
         List<String> lines = repo.readAllLines();
@@ -47,6 +43,21 @@ public class PacienteService {
 
         repo.appendNewLine(curpNoComa + "," + nombreNoComa + "," + edadNoComa + "," + telNoComa + "," + alergiasNoComa + "," + statusNoComa);
     }
+
+    public void cambiarEstatus(String curp) throws IOException {
+        List<Paciente> registros = loadDataForList();
+        List<String> result = new ArrayList<>();
+        for (Paciente pacien : registros) {
+            if (pacien.getCurp().equalsIgnoreCase(curp)) {
+                String nuevoEstado = pacien.getStatus().equalsIgnoreCase("ACTIVO") ? "INACTIVO" : "ACTIVO";
+                pacien.setStatus(nuevoEstado);
+            }
+            String linea = pacien.getCurp() + "," + pacien.getNombreCompleto() + "," + pacien.getEdad() + "," + pacien.getTelefono() + "," + pacien.getAlergias() + "," + pacien.getStatus();
+            result.add(linea);
+        }
+        repo.appendAllLines(result);
+    }
+
     private void validatePaciente(String curp, String nombre, String edad, String telefono){
         if(curp.isBlank()){
             throw new IllegalArgumentException("La curp no puede estar vacia");

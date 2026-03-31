@@ -17,7 +17,6 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                 <Label text="CURP" />
@@ -25,20 +24,18 @@
                 <Label text="EDAD" GridPane.rowIndex="2" />
                 <Label text="TELEFONO" GridPane.rowIndex="3" />
                 <Label text="ALERGIAS" GridPane.rowIndex="4" />
-                <Label text="ESTATUS" GridPane.rowIndex="5" />
                 <TextField fx:id="txtCURP" GridPane.columnIndex="1" />
                 <TextField fx:id="txtNombre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <TextField fx:id="txtEdad" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <TextField fx:id="txtTelefono" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <TextField fx:id="txtAlergias" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <ComboBox fx:id="cbEstatus" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             </children>
         </GridPane>
         <HBox prefHeight="100.0" prefWidth="200.0">
             <children>
                 <Button mnemonicParsing="false" onAction="#onAddPaciente" text="NUEVO" />
                 <Button mnemonicParsing="false" text="EDITAR" />
-                <Button mnemonicParsing="false" text="CAMBIAR ESTATUS" />
+                <Button mnemonicParsing="false" onAction="#onCambiarStatus" text="CAMBIAR ESTATUS" />
                 <Button mnemonicParsing="false" text="ELIMINAR" />
                 <Button mnemonicParsing="false" text="RECARGAR" />
                 <Button mnemonicParsing="false" onAction="#limpiar" text="LIMPIAR" />

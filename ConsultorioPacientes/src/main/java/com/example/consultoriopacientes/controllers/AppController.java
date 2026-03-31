@@ -13,7 +13,7 @@ import java.util.List;
 
 public class AppController {
     @FXML
-    private TableView<Paciente> tblPacientes; // Cambiamos ListView por TableView
+    private TableView<Paciente> tblPacientes;
     @FXML
     private TableColumn<Paciente, String> colCurp, colNombre, colEdad, colTelefono, colAlergias, colEstatus;
     @FXML
@@ -28,8 +28,6 @@ public class AppController {
     private TextField txtTelefono;
     @FXML
     private TextField txtAlergias;
-    @FXML
-    private ComboBox<String> cbEstatus;
 
     @FXML
     private final ObservableList<Paciente> data = FXCollections.observableArrayList();
@@ -45,7 +43,6 @@ public class AppController {
         colEstatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         tblPacientes.setItems(data);
-        cbEstatus.setItems(FXCollections.observableArrayList(service.getEstatusOpciones()));
 
         loadFromFile();
         tblPacientes.getSelectionModel().selectedItemProperty().addListener((obs, oldView, newView) -> {
@@ -61,10 +58,7 @@ public class AppController {
             String age = txtEdad.getText();
             String tel = txtTelefono.getText();
             String aler = txtAlergias.getText();
-            String stat = cbEstatus.getValue();
-            if(stat == null){
-                stat = "ACTIVO";
-            }
+            String stat = "ACTIVO";
 
             service.addPaciente(curp, name, age, tel, aler, stat);
 
@@ -102,7 +96,26 @@ public class AppController {
         txtEdad.setText(pacien.getEdad());
         txtTelefono.setText(pacien.getTelefono());
         txtAlergias.setText(pacien.getAlergias());
-        cbEstatus.setValue(pacien.getStatus());
+    }
+    @FXML
+    public void onCambiarStatus() {
+        Paciente seleccionado = tblPacientes.getSelectionModel().getSelectedItem();
+
+        if (seleccionado == null) {
+            lblMensaje.setText("Primero selecciona un paciente.");
+            lblMensaje.setStyle("-fx-text-fill: red");
+            return;
+        }
+        try {
+            service.cambiarEstatus(seleccionado.getCurp());
+
+            lblMensaje.setText("El estatus se ha actualizado correctamente.");
+            lblMensaje.setStyle("-fx-text-fill: green");
+            loadFromFile();
+        } catch (IOException e) {
+            lblMensaje.setText("Hubo un error al cambiar el estatus.");
+            lblMensaje.setStyle("-fx-text-fill: red");
+        }
     }
 
     @FXML
@@ -112,6 +125,5 @@ public class AppController {
         txtEdad.clear();
         txtTelefono.clear();
         txtAlergias.clear();
-        cbEstatus.getSelectionModel().clearSelection();
     }
 }
