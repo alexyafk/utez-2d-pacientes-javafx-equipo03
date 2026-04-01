@@ -62,14 +62,14 @@ public class AppController {
 
             service.addPaciente(curp, name, age, tel, aler, stat);
 
-            lblMensaje.setText("Paciente agregado con éxito");
+            lblMensaje.setText("Paciente agregado correctamente!");
             lblMensaje.setStyle("-fx-text-fill: green");
 
             limpiar();
             loadFromFile();
 
         } catch (IOException e) {
-            lblMensaje.setText("Hubo un error en el archivo.");
+            lblMensaje.setText("Hubo un error al agregar al paciente.");
             lblMensaje.setStyle("-fx-text-fill: red");
         } catch (IllegalArgumentException ex) {
             lblMensaje.setText(ex.getMessage());
