@@ -109,7 +109,7 @@ public class AppController {
         try {
             service.cambiarEstatus(seleccionado.getCurp());
 
-            lblMensaje.setText("El estatus se ha actualizado correctamente.");
+            lblMensaje.setText("El estatus se ha actualizado correctamente!");
             lblMensaje.setStyle("-fx-text-fill: green");
             loadFromFile();
         } catch (IOException e) {
