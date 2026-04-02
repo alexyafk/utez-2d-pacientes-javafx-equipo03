@@ -28,6 +28,12 @@ public class AppController {
     private TextField txtTelefono;
     @FXML
     private TextField txtAlergias;
+    @FXML
+    private Label lbltotal;
+    @FXML
+    private Label lblactivos;
+    @FXML
+    private Label lblinactivos;
 
     @FXML
     private final ObservableList<Paciente> data = FXCollections.observableArrayList();
@@ -77,17 +83,34 @@ public class AppController {
         }
     }
 
+    @FXML
+    public void onReload(){
+        loadFromFile();
+
+    }
+
 
     private void loadFromFile(){
         try {
             List<Paciente> items = service.loadDataForList();
             data.setAll(items);
+            resumen();
             lblMensaje.setText("Datos cargados exitosamente!");
             lblMensaje.setStyle("-fx-text-fill: green");
         } catch (IOException e) {
             lblMensaje.setText(e.getMessage());
             lblMensaje.setStyle("-fx-text-fill: red");
         }
+    }
+
+    private void resumen(){
+        int total = service.totalPacientes(data);
+        int activos = service.pacientesActivos(data);
+        int inactivos = service.pacientesInactivos(data);
+
+        lbltotal.setText("REGISTROS TOTALES: " + total);
+        lblactivos.setText("REGISTROS ACTIVOS: " + activos);
+        lblinactivos.setText("REGISTROS INACTIVOS: " + inactivos);
     }
     private void loadDataToForm(Paciente pacien) {
         if (pacien == null) return;

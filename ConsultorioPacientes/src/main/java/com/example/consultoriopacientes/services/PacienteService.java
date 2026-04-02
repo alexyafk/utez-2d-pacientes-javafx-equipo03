@@ -58,6 +58,30 @@ public class PacienteService {
         repo.appendAllLines(result);
     }
 
+    public int totalPacientes(List<Paciente> pacientes){
+        return pacientes.size();
+    }
+
+    public int pacientesActivos(List<Paciente> pacientes){
+        int activos = 0;
+        for(Paciente pacien : pacientes){
+            if(pacien.getStatus().equalsIgnoreCase("ACTIVO")){
+                activos++;
+            }
+        }
+        return activos;
+    }
+
+    public int pacientesInactivos(List<Paciente> pacientes){
+        int inactivos = 0;
+        for (Paciente pacien : pacientes){
+            if(pacien.getStatus().equalsIgnoreCase("INACTIVO")){
+                inactivos++;
+            }
+        }
+        return inactivos;
+    }
+
     private void validatePaciente(String curp, String nombre, String edad, String telefono){
         if(curp.isBlank()){
             throw new IllegalArgumentException("La curp no puede estar vacia");

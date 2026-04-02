@@ -37,7 +37,7 @@
                 <Button mnemonicParsing="false" text="EDITAR" />
                 <Button mnemonicParsing="false" onAction="#onCambiarStatus" text="CAMBIAR ESTATUS" />
                 <Button mnemonicParsing="false" text="ELIMINAR" />
-                <Button mnemonicParsing="false" text="RECARGAR" />
+                <Button mnemonicParsing="false" onAction="#onReload" text="RECARGAR" />
                 <Button mnemonicParsing="false" onAction="#limpiar" text="LIMPIAR" />
             </children></HBox>
         <TableView fx:id="tblPacientes" prefHeight="200.0" prefWidth="200.0">
@@ -53,7 +53,10 @@
         <Label fx:id="lblMensaje" />
       <VBox prefHeight="200.0" prefWidth="100.0">
          <children>
-            <Label text="RESUMEN:" />
+            <Label text="RESUMEN" />
+            <Label fx:id="lbltotal"/>
+            <Label fx:id="lblactivos"/>
+            <Label fx:id="lblinactivos"/>
          </children></VBox>
     </children>
 </VBox>
