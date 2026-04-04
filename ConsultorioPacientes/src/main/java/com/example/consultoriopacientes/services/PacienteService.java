@@ -58,6 +58,19 @@ public class PacienteService {
         repo.appendAllLines(result);
     }
 
+    public void deletePaciente(String curp) throws IOException {
+        List<Paciente> registros = loadDataForList();
+        List<String> result =new ArrayList<>();
+        for (Paciente pacien : registros){
+            if(pacien.getCurp().equalsIgnoreCase(curp)){
+                    pacien.setStatus("INACTIVO");
+            }
+            String linea = pacien.getCurp() + "," + pacien.getNombreCompleto() + "," + pacien.getEdad() + "," + pacien.getTelefono() + "," + pacien.getAlergias() + "," + pacien.getStatus();
+            result.add(linea);
+        }
+        repo.appendAllLines(result);
+    }
+
     public int totalPacientes(List<Paciente> pacientes){
         return pacientes.size();
     }

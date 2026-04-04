@@ -10,6 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 public class AppController {
     @FXML
@@ -138,6 +139,39 @@ public class AppController {
         } catch (IOException e) {
             lblMensaje.setText("Hubo un error al cambiar el estatus.");
             lblMensaje.setStyle("-fx-text-fill: red");
+        }
+    }
+
+    @FXML
+    public void onDeletePaciente(){
+        Paciente seleccionado = tblPacientes.getSelectionModel().getSelectedItem();
+
+        if (seleccionado == null) {
+            lblMensaje.setText("Primero selecciona un paciente.");
+            lblMensaje.setStyle("-fx-text-fill: red");
+            return;
+        }
+
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("ELIMINACION DE PACIENTE");
+        alerta.setHeaderText(null);
+        alerta.setContentText("Se eliminara al paciente: " + seleccionado.getNombreCompleto());
+
+        Optional<ButtonType> res = alerta.showAndWait();
+
+        if (res.isPresent() && res.get() == ButtonType.OK) {
+            try {
+                service.deletePaciente(seleccionado.getCurp());
+
+                lblMensaje.setText("El paciente ha sido eliminado correctamente!");
+                lblMensaje.setStyle("-fx-text-fill: green");
+
+                loadFromFile();
+                limpiar();
+            } catch (IOException e) {
+                lblMensaje.setText("Hubo un error al eliminar el paciente!");
+                lblMensaje.setStyle("-fx-text-fill: red");
+            }
         }
     }
 
