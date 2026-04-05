@@ -36,24 +36,27 @@
                 <Button mnemonicParsing="false" onAction="#onAddPaciente" text="NUEVO" />
                 <Button mnemonicParsing="false" text="EDITAR" />
                 <Button mnemonicParsing="false" onAction="#onCambiarStatus" text="CAMBIAR ESTATUS" />
-                <Button mnemonicParsing="false" text="ELIMINAR" />
-                <Button mnemonicParsing="false" text="RECARGAR" />
+                <Button mnemonicParsing="false" onAction="#onDeletePaciente" text="ELIMINAR" />
+                <Button mnemonicParsing="false" onAction="#onReload" text="RECARGAR" />
                 <Button mnemonicParsing="false" onAction="#limpiar" text="LIMPIAR" />
             </children></HBox>
         <TableView fx:id="tblPacientes" prefHeight="200.0" prefWidth="200.0">
             <columns>
-                <TableColumn fx:id="colCurp" prefWidth="75.0" text="CURP" />
-                <TableColumn fx:id="colNombre" prefWidth="75.0" text="NOMBRE" />
-                <TableColumn fx:id="colEdad" prefWidth="75.0" text="EDAD" />
-                <TableColumn fx:id="colTelefono" prefWidth="75.0" text="TELEFONO" />
-                <TableColumn fx:id="colAlergias" prefWidth="75.0" text="ALERGIAS" />
-                <TableColumn fx:id="colEstatus" prefWidth="75.0" text="ESTATUS" />
+                <TableColumn fx:id="colCurp" prefWidth="163.99998474121094" text="CURP" />
+                <TableColumn fx:id="colNombre" prefWidth="174.20001220703125" text="NOMBRE" />
+                <TableColumn fx:id="colEdad" prefWidth="39.4000244140625" text="EDAD" />
+                <TableColumn fx:id="colTelefono" prefWidth="105.20001220703125" text="TELEFONO" />
+                <TableColumn fx:id="colAlergias" prefWidth="76.0" text="ALERGIAS" />
+                <TableColumn fx:id="colEstatus" prefWidth="75.4000244140625" text="ESTATUS" />
             </columns>
         </TableView>
         <Label fx:id="lblMensaje" />
       <VBox prefHeight="200.0" prefWidth="100.0">
          <children>
-            <Label text="RESUMEN:" />
+            <Label text="RESUMEN" />
+            <Label fx:id="lbltotal" />
+            <Label fx:id="lblactivos" />
+            <Label fx:id="lblinactivos" />
          </children></VBox>
     </children>
 </VBox>
