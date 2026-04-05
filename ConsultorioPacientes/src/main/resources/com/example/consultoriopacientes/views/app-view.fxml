@@ -1,14 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<VBox prefHeight="623.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.consultoriopacientes.controllers.AppController">
+    <children>
+        <Label text="CONSULTORIO DE PACIENTES" />
+        <GridPane>
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label text="CURP" />
+                <Label text="NOMBRE COMPLETO" GridPane.rowIndex="1" />
+                <Label text="EDAD" GridPane.rowIndex="2" />
+                <Label text="TELEFONO" GridPane.rowIndex="3" />
+                <Label text="ALERGIAS" GridPane.rowIndex="4" />
+                <TextField fx:id="txtCURP" GridPane.columnIndex="1" />
+                <TextField fx:id="txtNombre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="txtEdad" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextField fx:id="txtTelefono" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <TextField fx:id="txtAlergias" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            </children>
+        </GridPane>
+        <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+                <Button mnemonicParsing="false" onAction="#onAddPaciente" text="NUEVO" />
+                <Button mnemonicParsing="false" text="EDITAR" />
+                <Button mnemonicParsing="false" onAction="#onCambiarStatus" text="CAMBIAR ESTATUS" />
+                <Button mnemonicParsing="false" onAction="#onDeletePaciente" text="ELIMINAR" />
+                <Button mnemonicParsing="false" onAction="#onReload" text="RECARGAR" />
+                <Button mnemonicParsing="false" onAction="#limpiar" text="LIMPIAR" />
+            </children></HBox>
+        <TableView fx:id="tblPacientes" prefHeight="200.0" prefWidth="200.0">
+            <columns>
+                <TableColumn fx:id="colCurp" prefWidth="163.99998474121094" text="CURP" />
+                <TableColumn fx:id="colNombre" prefWidth="174.20001220703125" text="NOMBRE" />
+                <TableColumn fx:id="colEdad" prefWidth="39.4000244140625" text="EDAD" />
+                <TableColumn fx:id="colTelefono" prefWidth="105.20001220703125" text="TELEFONO" />
+                <TableColumn fx:id="colAlergias" prefWidth="76.0" text="ALERGIAS" />
+                <TableColumn fx:id="colEstatus" prefWidth="75.4000244140625" text="ESTATUS" />
+            </columns>
+        </TableView>
+        <Label fx:id="lblMensaje" />
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Label text="RESUMEN" />
+            <Label fx:id="lbltotal" />
+            <Label fx:id="lblactivos" />
+            <Label fx:id="lblinactivos" />
+         </children></VBox>
+    </children>
+</VBox>

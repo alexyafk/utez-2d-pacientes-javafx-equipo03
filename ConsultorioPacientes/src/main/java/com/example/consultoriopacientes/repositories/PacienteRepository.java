@@ -9,9 +9,9 @@ import java.nio.file.StandardOpenOption;
 import java.util.List;
 
 public class PacienteRepository {
-    private final Path filePath = Paths.get("data", "persons.csv");
+    private final Path filePath = Paths.get("data", "pacientes.csv");
 
-    private void ensureFileExist() throws IOException {
+    private void ensureFileExist() throws IOException{
         if (Files.notExists(filePath)){
             Files.createFile(filePath);
         }
