@@ -176,6 +176,39 @@ public class AppController {
     }
 
     @FXML
+    public void onEditarPaciente() {
+        Paciente seleccionado = tblPacientes.getSelectionModel().getSelectedItem();
+
+        if (seleccionado == null) {
+            lblMensaje.setText("Primero selecciona un paciente.");
+            lblMensaje.setStyle("-fx-text-fill: red");
+            return;
+        }
+
+        try {
+            String curp = txtCURP.getText();
+            String name = txtNombre.getText();
+            String age = txtEdad.getText();
+            String tel = txtTelefono.getText();
+            String aler = txtAlergias.getText();
+
+            service.editarPaciente(curp, name, age, tel, aler);
+            lblMensaje.setText("Paciente actualizado correctamente!");
+            lblMensaje.setStyle("-fx-text-fill: green");
+
+            loadFromFile();
+            limpiar();
+
+        } catch (IOException e) {
+            lblMensaje.setText("Error al editar paciente.");
+            lblMensaje.setStyle("-fx-text-fill: red");
+        } catch (IllegalArgumentException ex) {
+            lblMensaje.setText(ex.getMessage());
+            lblMensaje.setStyle("-fx-text-fill: red");
+        }
+    }
+
+    @FXML
     private void limpiar(){
         txtCURP.clear();
         txtNombre.clear();

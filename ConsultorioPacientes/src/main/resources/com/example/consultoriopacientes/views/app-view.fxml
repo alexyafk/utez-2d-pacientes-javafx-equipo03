@@ -34,7 +34,7 @@
         <HBox prefHeight="100.0" prefWidth="200.0">
             <children>
                 <Button mnemonicParsing="false" onAction="#onAddPaciente" text="NUEVO" />
-                <Button mnemonicParsing="false" text="EDITAR" />
+                <Button mnemonicParsing="false" onAction="#onEditarPaciente" text="EDITAR" />
                 <Button mnemonicParsing="false" onAction="#onCambiarStatus" text="CAMBIAR ESTATUS" />
                 <Button mnemonicParsing="false" onAction="#onDeletePaciente" text="ELIMINAR" />
                 <Button mnemonicParsing="false" onAction="#onReload" text="RECARGAR" />

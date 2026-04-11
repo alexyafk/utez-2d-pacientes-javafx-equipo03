@@ -44,6 +44,20 @@ public class PacienteService {
         repo.appendNewLine(curpNoComa + "," + nombreNoComa + "," + edadNoComa + "," + telNoComa + "," + alergiasNoComa + "," + statusNoComa);
     }
 
+    public void editarPaciente(String curp, String nombre, String edad, String telefono, String alergias) throws IOException {
+        List<Paciente> lista = loadDataForList();
+
+        for (Paciente p : lista) {
+            if (p.getCurp().equals(curp)) {
+                p.setNombreCompleto(nombre);
+                p.setEdad(edad);
+                p.setTelefono(telefono);
+                p.setAlergias(alergias);
+                break;
+            }
+        }
+    }
+
     public void cambiarEstatus(String curp) throws IOException {
         List<Paciente> registros = loadDataForList();
         List<String> result = new ArrayList<>();
