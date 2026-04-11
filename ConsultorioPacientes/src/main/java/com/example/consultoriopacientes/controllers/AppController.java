@@ -186,13 +186,15 @@ public class AppController {
         }
 
         try {
-            String curp = txtCURP.getText();
+            String curpOriginal = seleccionado.getCurp();
+
             String name = txtNombre.getText();
             String age = txtEdad.getText();
             String tel = txtTelefono.getText();
             String aler = txtAlergias.getText();
 
-            service.editarPaciente(curp, name, age, tel, aler);
+            service.editarPaciente(curpOriginal, name, age, tel, aler);
+
             lblMensaje.setText("Paciente actualizado correctamente!");
             lblMensaje.setStyle("-fx-text-fill: green");
 

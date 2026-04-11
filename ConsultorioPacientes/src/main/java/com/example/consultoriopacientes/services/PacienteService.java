@@ -46,18 +46,20 @@ public class PacienteService {
 
     public void editarPaciente(String curp, String nombre, String edad, String telefono, String alergias) throws IOException {
         List<Paciente> lista = loadDataForList();
+        List<String> result = new ArrayList<>();
 
         for (Paciente p : lista) {
-            if (p.getCurp().equals(curp)) {
+            if (p.getCurp().equalsIgnoreCase(curp)) {
                 p.setNombreCompleto(nombre);
                 p.setEdad(edad);
                 p.setTelefono(telefono);
                 p.setAlergias(alergias);
-                break;
             }
+            String linea = p.getCurp() + "," + p.getNombreCompleto() + "," + p.getEdad() + "," + p.getTelefono() + "," + p.getAlergias() + "," + p.getStatus();
+            result.add(linea);
         }
+        repo.appendAllLines(result);
     }
-
     public void cambiarEstatus(String curp) throws IOException {
         List<Paciente> registros = loadDataForList();
         List<String> result = new ArrayList<>();
