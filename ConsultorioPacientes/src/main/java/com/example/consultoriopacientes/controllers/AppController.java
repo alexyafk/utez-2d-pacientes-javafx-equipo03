@@ -187,13 +187,13 @@ public class AppController {
 
         try {
             String curpOriginal = seleccionado.getCurp();
-
+            String curpNuevo = txtCURP.getText();
             String name = txtNombre.getText();
             String age = txtEdad.getText();
             String tel = txtTelefono.getText();
             String aler = txtAlergias.getText();
 
-            service.editarPaciente(curpOriginal, name, age, tel, aler);
+            service.editarPaciente(curpOriginal, curpNuevo, name, age, tel, aler);
 
             lblMensaje.setText("Paciente actualizado correctamente!");
             lblMensaje.setStyle("-fx-text-fill: green");

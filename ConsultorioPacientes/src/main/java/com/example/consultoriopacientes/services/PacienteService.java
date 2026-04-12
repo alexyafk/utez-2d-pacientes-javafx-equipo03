@@ -44,12 +44,21 @@ public class PacienteService {
         repo.appendNewLine(curpNoComa + "," + nombreNoComa + "," + edadNoComa + "," + telNoComa + "," + alergiasNoComa + "," + statusNoComa);
     }
 
-    public void editarPaciente(String curp, String nombre, String edad, String telefono, String alergias) throws IOException {
+    public void editarPaciente(String curpOriginal, String curpNuevo, String nombre, String edad, String telefono, String alergias) throws IOException {
+
+        validatePaciente(curpNuevo, nombre, edad, telefono);
+
         List<Paciente> lista = loadDataForList();
         List<String> result = new ArrayList<>();
-
         for (Paciente p : lista) {
-            if (p.getCurp().equalsIgnoreCase(curp)) {
+            if (!p.getCurp().equalsIgnoreCase(curpOriginal) &&
+                    p.getCurp().equalsIgnoreCase(curpNuevo)) {
+                throw new IllegalArgumentException("Ya existe un paciente con esa CURP.");
+            }
+        }
+        for (Paciente p : lista) {
+            if (p.getCurp().equalsIgnoreCase(curpOriginal)) {
+                p.setCurp(curpNuevo);
                 p.setNombreCompleto(nombre);
                 p.setEdad(edad);
                 p.setTelefono(telefono);
@@ -60,6 +69,7 @@ public class PacienteService {
         }
         repo.appendAllLines(result);
     }
+
     public void cambiarEstatus(String curp) throws IOException {
         List<Paciente> registros = loadDataForList();
         List<String> result = new ArrayList<>();
