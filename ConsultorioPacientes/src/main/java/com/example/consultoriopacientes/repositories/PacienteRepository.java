@@ -11,12 +11,15 @@ import java.util.List;
 public class PacienteRepository {
     private final Path filePath = Paths.get("data", "pacientes.csv");
 
-    private void ensureFileExist() throws IOException{
-        if (Files.notExists(filePath)){
+    private void ensureFileExist() throws IOException {
+        if (Files.notExists(filePath.getParent())) {
+            Files.createDirectories(filePath.getParent());
+        }
+
+        if (Files.notExists(filePath)) {
             Files.createFile(filePath);
         }
     }
-
 
     public List<String> readAllLines() throws IOException {
         ensureFileExist();
